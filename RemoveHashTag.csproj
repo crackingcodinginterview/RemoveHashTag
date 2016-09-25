@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9809EC5-F64F-4E02-BF07-952487B4B71D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RemoveHashTag</RootNamespace>
+    <AssemblyName>RemoveHashTag</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\ApplicationInsights.config" />
+    <Content Include="bin\RemoveHashTag.dll.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="bower.json" />
+    <Content Include="bower_components\angular-ui-router\.bower.json" />
+    <Content Include="bower_components\angular-ui-router\bower.json" />
+    <Content Include="bower_components\angular-ui-router\CHANGELOG.md" />
+    <Content Include="bower_components\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="bower_components\angular-ui-router\LICENSE" />
+    <Content Include="bower_components\angular-ui-router\README.md" />
+    <Content Include="bower_components\angular\.bower.json" />
+    <Content Include="bower_components\angular\angular.min.js.gzip" />
+    <Content Include="bower_components\angular\angular.min.js.map" />
+    <Content Include="bower_components\angular\bower.json" />
+    <Content Include="bower_components\angular\LICENSE.md" />
+    <Content Include="bower_components\angular\package.json" />
+    <Content Include="bower_components\angular\README.md" />
+    <Content Include="bin\node_modules\.bin\semver" />
+    <Content Include="bin\node_modules\.bin\semver.cmd" />
+    <Content Include="bin\node_modules\.bin\window-size" />
+    <Content Include="bin\node_modules\.bin\window-size.cmd" />
+    <Content Include="bin\node_modules\ansi-regex\license" />
+    <Content Include="bin\node_modules\ansi-regex\package.json" />
+    <Content Include="bin\node_modules\ansi-regex\readme.md" />
+    <Content Include="bin\node_modules\body-parser\HISTORY.md" />
+    <Content Include="bin\node_modules\body-parser\LICENSE" />
+    <Content Include="bin\node_modules\body-parser\package.json" />
+    <Content Include="bin\node_modules\body-parser\README.md" />
+    <Content Include="bin\node_modules\builtin-modules\builtin-modules.json" />
+    <Content Include="bin\node_modules\builtin-modules\license" />
+    <Content Include="bin\node_modules\builtin-modules\package.json" />
+    <Content Include="bin\node_modules\builtin-modules\readme.md" />
+    <Content Include="bin\node_modules\bytes\History.md" />
+    <Content Include="bin\node_modules\bytes\LICENSE" />
+    <Content Include="bin\node_modules\bytes\package.json" />
+    <Content Include="bin\node_modules\bytes\Readme.md" />
+    <Content Include="bin\node_modules\camelcase\license" />
+    <Content Include="bin\node_modules\camelcase\package.json" />
+    <Content Include="bin\node_modules\camelcase\readme.md" />
+    <Content Include="bin\node_modules\cliui\CHANGELOG.md" />
+    <Content Include="bin\node_modules\cliui\package.json" />
+    <Content Include="bin\node_modules\cliui\README.md" />
+    <Content Include="bin\node_modules\code-point-at\license" />
+    <Content Include="bin\node_modules\code-point-at\package.json" />
+    <Content Include="bin\node_modules\code-point-at\readme.md" />
+    <Content Include="bin\node_modules\content-type\HISTORY.md" />
+    <Content Include="bin\node_modules\content-type\LICENSE" />
+    <Content Include="bin\node_modules\content-type\package.json" />
+    <Content Include="bin\node_modules\content-type\README.md" />
+    <Content Include="bin\node_modules\cors\.eslintrc" />
+    <Content Include="bin\node_modules\cors\.npmignore" />
+    <Content Include="bin\node_modules\cors\.travis.yml" />
+    <Content Include="bin\node_modules\cors\CONTRIBUTING.md" />
+    <Content Include="bin\node_modules\cors\LICENSE" />
+    <Content Include="bin\node_modules\cors\package.json" />
+    <Content Include="bin\node_modules\cors\README.md" />
+    <Content Include="bin\node_modules\cors\test\mocha.opts" />
+    <Content Include="bin\node_modules\debug\.jshintrc" />
+    <Content Include="bin\node_modules\debug\.npmignore" />
+    <Content Include="bin\node_modules\debug\bower.json" />
+    <Content Include="bin\node_modules\debug\component.json" />
+    <Content Include="bin\node_modules\debug\History.md" />
+    <Content Include="bin\node_modules\debug\Makefile" />
+    <Content Include="bin\node_modules\debug\package.json" />
+    <Content Include="bin\node_modules\debug\Readme.md" />
+    <Content Include="bin\node_modules\decamelize\license" />
+    <Content Include="bin\node_modules\decamelize\package.json" />
+    <Content Include="bin\node_modules\decamelize\readme.md" />
+    <Content Include="bin\node_modules\depd\History.md" />
+    <Content Include="bin\node_modules\depd\LICENSE" />
+    <Content Include="bin\node_modules\depd\package.json" />
+    <Content Include="bin\node_modules\depd\Readme.md" />
+    <Content Include="bin\node_modules\ee-first\LICENSE" />
+    <Content Include="bin\node_modules\ee-first\package.json" />
+    <Content Include="bin\node_modules\ee-first\README.md" />
+    <Content Include="bin\node_modules\error-ex\LICENSE" />
+    <Content Include="bin\node_modules\error-ex\package.json" />
+    <Content Include="bin\node_modules\error-ex\README.md" />
+    <Content Include="bin\node_modules\find-up\license" />
+    <Content Include="bin\node_modules\find-up\package.json" />
+    <Content Include="bin\node_modules\find-up\readme.md" />
+    <Content Include="bin\node_modules\get-caller-file\package.json" />
+    <Content Include="bin\node_modules\get-caller-file\README.md" />
+    <Content Include="bin\node_modules\graceful-fs\LICENSE" />
+    <Content Include="bin\node_modules\graceful-fs\package.json" />
+    <Content Include="bin\node_modules\graceful-fs\README.md" />
+    <Content Include="bin\node_modules\hosted-git-info\.npmignore" />
+    <Content Include="bin\node_modules\hosted-git-info\LICENSE" />
+    <Content Include="bin\node_modules\hosted-git-info\package.json" />
+    <Content Include="bin\node_modules\hosted-git-info\README.md" />
+    <Content Include="bin\node_modules\http-errors\HISTORY.md" />
+    <Content Include="bin\node_modules\http-errors\LICENSE" />
+    <Content Include="bin\node_modules\http-errors\package.json" />
+    <Content Include="bin\node_modules\http-errors\README.md" />
+    <Content Include="bin\node_modules\iconv-lite\.npmignore" />
+    <Content Include="bin\node_modules\iconv-lite\.travis.yml" />
+    <Content Include="bin\node_modules\iconv-lite\Changelog.md" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\tables\big5-added.json" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\tables\cp936.json" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\tables\cp949.json" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\tables\cp950.json" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\tables\eucjp.json" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\tables\gb18030-ranges.json" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\tables\gbk-added.json" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\tables\shiftjis.json" />
+    <Content Include="bin\node_modules\iconv-lite\LICENSE" />
+    <Content Include="bin\node_modules\iconv-lite\package.json" />
+    <Content Include="bin\node_modules\iconv-lite\README.md" />
+    <Content Include="bin\node_modules\inherits\LICENSE" />
+    <Content Include="bin\node_modules\inherits\package.json" />
+    <Content Include="bin\node_modules\inherits\README.md" />
+    <Content Include="bin\node_modules\invert-kv\package.json" />
+    <Content Include="bin\node_modules\invert-kv\readme.md" />
+    <Content Include="bin\node_modules\is-arrayish\.editorconfig" />
+    <Content Include="bin\node_modules\is-arrayish\.istanbul.yml" />
+    <Content Include="bin\node_modules\is-arrayish\.npmignore" />
+    <Content Include="bin\node_modules\is-arrayish\.travis.yml" />
+    <Content Include="bin\node_modules\is-arrayish\LICENSE" />
+    <Content Include="bin\node_modules\is-arrayish\package.json" />
+    <Content Include="bin\node_modules\is-arrayish\README.md" />
+    <Content Include="bin\node_modules\is-builtin-module\license" />
+    <Content Include="bin\node_modules\is-builtin-module\package.json" />
+    <Content Include="bin\node_modules\is-builtin-module\readme.md" />
+    <Content Include="bin\node_modules\is-fullwidth-code-point\license" />
+    <Content Include="bin\node_modules\is-fullwidth-code-point\package.json" />
+    <Content Include="bin\node_modules\is-fullwidth-code-point\readme.md" />
+    <Content Include="bin\node_modules\is-utf8\LICENSE" />
+    <Content Include="bin\node_modules\is-utf8\package.json" />
+    <Content Include="bin\node_modules\is-utf8\README.md" />
+    <Content Include="bin\node_modules\lcid\lcid.json" />
+    <Content Include="bin\node_modules\lcid\license" />
+    <Content Include="bin\node_modules\lcid\package.json" />
+    <Content Include="bin\node_modules\lcid\readme.md" />
+    <Content Include="bin\node_modules\load-json-file\license" />
+    <Content Include="bin\node_modules\load-json-file\package.json" />
+    <Content Include="bin\node_modules\load-json-file\readme.md" />
+    <Content Include="bin\node_modules\lodash.assign\LICENSE" />
+    <Content Include="bin\node_modules\lodash.assign\package.json" />
+    <Content Include="bin\node_modules\lodash.assign\README.md" />
+    <Content Include="bin\node_modules\media-typer\HISTORY.md" />
+    <Content Include="bin\node_modules\media-typer\LICENSE" />
+    <Content Include="bin\node_modules\media-typer\package.json" />
+    <Content Include="bin\node_modules\media-typer\README.md" />
+    <Content Include="bin\node_modules\mime-db\db.json" />
+    <Content Include="bin\node_modules\mime-db\HISTORY.md" />
+    <Content Include="bin\node_modules\mime-db\LICENSE" />
+    <Content Include="bin\node_modules\mime-db\package.json" />
+    <Content Include="bin\node_modules\mime-db\README.md" />
+    <Content Include="bin\node_modules\mime-types\HISTORY.md" />
+    <Content Include="bin\node_modules\mime-types\LICENSE" />
+    <Content Include="bin\node_modules\mime-types\package.json" />
+    <Content Include="bin\node_modules\mime-types\README.md" />
+    <Content Include="bin\node_modules\ms\.npmignore" />
+    <Content Include="bin\node_modules\ms\History.md" />
+    <Content Include="bin\node_modules\ms\LICENSE" />
+    <Content Include="bin\node_modules\ms\package.json" />
+    <Content Include="bin\node_modules\ms\README.md" />
+    <Content Include="bin\node_modules\normalize-package-data\.npmignore" />
+    <Content Include="bin\node_modules\normalize-package-data\.travis.yml" />
+    <Content Include="bin\node_modules\normalize-package-data\AUTHORS" />
+    <Content Include="bin\node_modules\normalize-package-data\lib\typos.json" />
+    <Content Include="bin\node_modules\normalize-package-data\lib\warning_messages.json" />
+    <Content Include="bin\node_modules\normalize-package-data\LICENSE" />
+    <Content Include="bin\node_modules\normalize-package-data\package.json" />
+    <Content Include="bin\node_modules\normalize-package-data\README.md" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\async.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\badscripts.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\bcrypt.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\coffee-script.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\http-server.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\movefile.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\no-description.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\node-module_exist.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\npm.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\read-package-json.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\request.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\fixtures\underscore.json" />
+    <Content Include="bin\node_modules\normalize-package-data\test\normalize.js~" />
+    <Content Include="bin\node_modules\number-is-nan\license" />
+    <Content Include="bin\node_modules\number-is-nan\package.json" />
+    <Content Include="bin\node_modules\number-is-nan\readme.md" />
+    <Content Include="bin\node_modules\on-finished\HISTORY.md" />
+    <Content Include="bin\node_modules\on-finished\LICENSE" />
+    <Content Include="bin\node_modules\on-finished\package.json" />
+    <Content Include="bin\node_modules\on-finished\README.md" />
+    <Content Include="bin\node_modules\os-locale\license" />
+    <Content Include="bin\node_modules\os-locale\package.json" />
+    <Content Include="bin\node_modules\os-locale\readme.md" />
+    <Content Include="bin\node_modules\parse-json\license" />
+    <Content Include="bin\node_modules\parse-json\package.json" />
+    <Content Include="bin\node_modules\parse-json\readme.md" />
+    <Content Include="bin\node_modules\path-exists\license" />
+    <Content Include="bin\node_modules\path-exists\package.json" />
+    <Content Include="bin\node_modules\path-exists\readme.md" />
+    <Content Include="bin\node_modules\path-type\license" />
+    <Content Include="bin\node_modules\path-type\package.json" />
+    <Content Include="bin\node_modules\path-type\readme.md" />
+    <Content Include="bin\node_modules\pify\license" />
+    <Content Include="bin\node_modules\pify\package.json" />
+    <Content Include="bin\node_modules\pify\readme.md" />
+    <Content Include="bin\node_modules\pinkie-promise\license" />
+    <Content Include="bin\node_modules\pinkie-promise\package.json" />
+    <Content Include="bin\node_modules\pinkie-promise\readme.md" />
+    <Content Include="bin\node_modules\pinkie\license" />
+    <Content Include="bin\node_modules\pinkie\package.json" />
+    <Content Include="bin\node_modules\pinkie\readme.md" />
+    <Content Include="bin\node_modules\qs\.eslintignore" />
+    <Content Include="bin\node_modules\qs\.eslintrc" />
+    <Content Include="bin\node_modules\qs\.jscs.json" />
+    <Content Include="bin\node_modules\qs\CHANGELOG.md" />
+    <Content Include="bin\node_modules\qs\CONTRIBUTING.md" />
+    <Content Include="bin\node_modules\qs\LICENSE" />
+    <Content Include="bin\node_modules\qs\package.json" />
+    <Content Include="bin\node_modules\raw-body\HISTORY.md" />
+    <Content Include="bin\node_modules\raw-body\LICENSE" />
+    <Content Include="bin\node_modules\raw-body\package.json" />
+    <Content Include="bin\node_modules\raw-body\README.md" />
+    <Content Include="bin\node_modules\read-pkg-up\license" />
+    <Content Include="bin\node_modules\read-pkg-up\package.json" />
+    <Content Include="bin\node_modules\read-pkg-up\readme.md" />
+    <Content Include="bin\node_modules\read-pkg\license" />
+    <Content Include="bin\node_modules\read-pkg\package.json" />
+    <Content Include="bin\node_modules\read-pkg\readme.md" />
+    <Content Include="bin\node_modules\require-directory\.jshintrc" />
+    <Content Include="bin\node_modules\require-directory\.npmignore" />
+    <Content Include="bin\node_modules\require-directory\.travis.yml" />
+    <Content Include="bin\node_modules\require-directory\LICENSE" />
+    <Content Include="bin\node_modules\require-directory\package.json" />
+    <Content Include="bin\node_modules\require-directory\README.markdown" />
+    <Content Include="bin\node_modules\require-main-filename\.npmignore" />
+    <Content Include="bin\node_modules\require-main-filename\.travis.yml" />
+    <Content Include="bin\node_modules\require-main-filename\package.json" />
+    <Content Include="bin\node_modules\require-main-filename\README.md" />
+    <Content Include="bin\node_modules\semver\bin\semver" />
+    <Content Include="bin\node_modules\semver\LICENSE" />
+    <Content Include="bin\node_modules\semver\package.json" />
+    <Content Include="bin\node_modules\semver\range.bnf" />
+    <Content Include="bin\node_modules\semver\README.md" />
+    <Content Include="bin\node_modules\set-blocking\CHANGELOG.md" />
+    <Content Include="bin\node_modules\set-blocking\package.json" />
+    <Content Include="bin\node_modules\set-blocking\README.md" />
+    <Content Include="bin\node_modules\setprototypeof\LICENSE" />
+    <Content Include="bin\node_modules\setprototypeof\package.json" />
+    <Content Include="bin\node_modules\setprototypeof\README.md" />
+    <Content Include="bin\node_modules\spdx-correct\LICENSE" />
+    <Content Include="bin\node_modules\spdx-correct\package.json" />
+    <Content Include="bin\node_modules\spdx-correct\README.md" />
+    <Content Include="bin\node_modules\spdx-expression-parse\AUTHORS" />
+    <Content Include="bin\node_modules\spdx-expression-parse\LICENSE" />
+    <Content Include="bin\node_modules\spdx-expression-parse\package.json" />
+    <Content Include="bin\node_modules\spdx-expression-parse\README.md" />
+    <Content Include="bin\node_modules\spdx-license-ids\LICENSE" />
+    <Content Include="bin\node_modules\spdx-license-ids\package.json" />
+    <Content Include="bin\node_modules\spdx-license-ids\README.md" />
+    <Content Include="bin\node_modules\spdx-license-ids\spdx-license-ids.json" />
+    <Content Include="bin\node_modules\statuses\codes.json" />
+    <Content Include="bin\node_modules\statuses\HISTORY.md" />
+    <Content Include="bin\node_modules\statuses\LICENSE" />
+    <Content Include="bin\node_modules\statuses\package.json" />
+    <Content Include="bin\node_modules\statuses\README.md" />
+    <Content Include="bin\node_modules\string-width\license" />
+    <Content Include="bin\node_modules\string-width\package.json" />
+    <Content Include="bin\node_modules\string-width\readme.md" />
+    <Content Include="bin\node_modules\strip-ansi\license" />
+    <Content Include="bin\node_modules\strip-ansi\package.json" />
+    <Content Include="bin\node_modules\strip-ansi\readme.md" />
+    <Content Include="bin\node_modules\strip-bom\license" />
+    <Content Include="bin\node_modules\strip-bom\package.json" />
+    <Content Include="bin\node_modules\strip-bom\readme.md" />
+    <Content Include="bin\node_modules\type-is\HISTORY.md" />
+    <Content Include="bin\node_modules\type-is\LICENSE" />
+    <Content Include="bin\node_modules\type-is\package.json" />
+    <Content Include="bin\node_modules\type-is\README.md" />
+    <Content Include="bin\node_modules\unpipe\HISTORY.md" />
+    <Content Include="bin\node_modules\unpipe\LICENSE" />
+    <Content Include="bin\node_modules\unpipe\package.json" />
+    <Content Include="bin\node_modules\unpipe\README.md" />
+    <Content Include="bin\node_modules\validate-npm-package-license\LICENSE" />
+    <Content Include="bin\node_modules\validate-npm-package-license\package.json" />
+    <Content Include="bin\node_modules\validate-npm-package-license\README.md" />
+    <Content Include="bin\node_modules\vary\HISTORY.md" />
+    <Content Include="bin\node_modules\vary\LICENSE" />
+    <Content Include="bin\node_modules\vary\package.json" />
+    <Content Include="bin\node_modules\vary\README.md" />
+    <Content Include="bin\node_modules\which-module\CHANGELOG.md" />
+    <Content Include="bin\node_modules\which-module\LICENSE" />
+    <Content Include="bin\node_modules\which-module\package.json" />
+    <Content Include="bin\node_modules\which-module\README.md" />
+    <Content Include="bin\node_modules\window-size\LICENSE" />
+    <Content Include="bin\node_modules\window-size\package.json" />
+    <Content Include="bin\node_modules\window-size\README.md" />
+    <Content Include="bin\node_modules\wrap-ansi\license" />
+    <Content Include="bin\node_modules\wrap-ansi\package.json" />
+    <Content Include="bin\node_modules\wrap-ansi\readme.md" />
+    <Content Include="bin\node_modules\y18n\LICENSE" />
+    <Content Include="bin\node_modules\y18n\package.json" />
+    <Content Include="bin\node_modules\y18n\README.md" />
+    <Content Include="bin\node_modules\yargs-parser\CHANGELOG.md" />
+    <Content Include="bin\node_modules\yargs-parser\package.json" />
+    <Content Include="bin\node_modules\yargs-parser\README.md" />
+    <Content Include="bin\node_modules\yargs\CHANGELOG.md" />
+    <Content Include="bin\node_modules\yargs\completion.sh.hbs" />
+    <Content Include="bin\node_modules\yargs\LICENSE" />
+    <Content Include="bin\node_modules\yargs\locales\de.json" />
+    <Content Include="bin\node_modules\yargs\locales\en.json" />
+    <Content Include="bin\node_modules\yargs\locales\es.json" />
+    <Content Include="bin\node_modules\yargs\locales\fr.json" />
+    <Content Include="bin\node_modules\yargs\locales\id.json" />
+    <Content Include="bin\node_modules\yargs\locales\it.json" />
+    <Content Include="bin\node_modules\yargs\locales\ja.json" />
+    <Content Include="bin\node_modules\yargs\locales\ko.json" />
+    <Content Include="bin\node_modules\yargs\locales\nb.json" />
+    <Content Include="bin\node_modules\yargs\locales\pirate.json" />
+    <Content Include="bin\node_modules\yargs\locales\pl.json" />
+    <Content Include="bin\node_modules\yargs\locales\pt.json" />
+    <Content Include="bin\node_modules\yargs\locales\pt_BR.json" />
+    <Content Include="bin\node_modules\yargs\locales\tr.json" />
+    <Content Include="bin\node_modules\yargs\locales\zh_CN.json" />
+    <Content Include="bin\node_modules\yargs\package.json" />
+    <Content Include="bin\node_modules\yargs\README.md" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\RemoveHashTag.csprojResolveAssemblyReference.cache" />
+    <Content Include="package.json" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.xml" />
+    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.xml" />
+    <Content Include="bin\Microsoft.AI.Web.dll" />
+    <Content Include="bin\Microsoft.AI.Web.xml" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.xml" />
+    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\RemoveHashTag.dll" />
+    <Content Include="bin\RemoveHashTag.pdb" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bower_components\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="bower_components\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="bower_components\angular-ui-router\src\common.js" />
+    <Content Include="bower_components\angular-ui-router\src\resolve.js" />
+    <Content Include="bower_components\angular-ui-router\src\state.js" />
+    <Content Include="bower_components\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="bower_components\angular-ui-router\src\stateFilters.js" />
+    <Content Include="bower_components\angular-ui-router\src\templateFactory.js" />
+    <Content Include="bower_components\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="bower_components\angular-ui-router\src\urlRouter.js" />
+    <Content Include="bower_components\angular-ui-router\src\view.js" />
+    <Content Include="bower_components\angular-ui-router\src\viewDirective.js" />
+    <Content Include="bower_components\angular-ui-router\src\viewScroll.js" />
+    <Content Include="bower_components\angular\angular-csp.css" />
+    <Content Include="bower_components\angular\angular.js" />
+    <Content Include="bower_components\angular\angular.min.js" />
+    <Content Include="bower_components\angular\index.js" />
+    <Content Include="img\aa.PNG" />
+    <Content Include="index.html" />
+    <Content Include="bin\node_modules\ansi-regex\index.js" />
+    <Content Include="bin\node_modules\body-parser\index.js" />
+    <Content Include="bin\node_modules\body-parser\lib\read.js" />
+    <Content Include="bin\node_modules\body-parser\lib\types\json.js" />
+    <Content Include="bin\node_modules\body-parser\lib\types\raw.js" />
+    <Content Include="bin\node_modules\body-parser\lib\types\text.js" />
+    <Content Include="bin\node_modules\body-parser\lib\types\urlencoded.js" />
+    <Content Include="bin\node_modules\builtin-modules\index.js" />
+    <Content Include="bin\node_modules\builtin-modules\static.js" />
+    <Content Include="bin\node_modules\bytes\index.js" />
+    <Content Include="bin\node_modules\camelcase\index.js" />
+    <Content Include="bin\node_modules\cliui\index.js" />
+    <Content Include="bin\node_modules\cliui\LICENSE.txt" />
+    <Content Include="bin\node_modules\code-point-at\index.js" />
+    <Content Include="bin\node_modules\content-type\index.js" />
+    <Content Include="bin\node_modules\cors\lib\index.js" />
+    <Content Include="bin\node_modules\cors\test\basic-auth.js" />
+    <Content Include="bin\node_modules\cors\test\body-events.js" />
+    <Content Include="bin\node_modules\cors\test\cors.js" />
+    <Content Include="bin\node_modules\cors\test\error-response.js" />
+    <Content Include="bin\node_modules\cors\test\example-app.js" />
+    <Content Include="bin\node_modules\cors\test\issue-2.js" />
+    <Content Include="bin\node_modules\cors\test\issue-31.js" />
+    <Content Include="bin\node_modules\debug\browser.js" />
+    <Content Include="bin\node_modules\debug\debug.js" />
+    <Content Include="bin\node_modules\debug\node.js" />
+    <Content Include="bin\node_modules\decamelize\index.js" />
+    <Content Include="bin\node_modules\depd\index.js" />
+    <Content Include="bin\node_modules\depd\lib\browser\index.js" />
+    <Content Include="bin\node_modules\depd\lib\compat\buffer-concat.js" />
+    <Content Include="bin\node_modules\depd\lib\compat\callsite-tostring.js" />
+    <Content Include="bin\node_modules\depd\lib\compat\event-listener-count.js" />
+    <Content Include="bin\node_modules\depd\lib\compat\index.js" />
+    <Content Include="bin\node_modules\ee-first\index.js" />
+    <Content Include="bin\node_modules\error-ex\index.js" />
+    <Content Include="bin\node_modules\find-up\index.js" />
+    <Content Include="bin\node_modules\get-caller-file\index.js" />
+    <Content Include="bin\node_modules\graceful-fs\fs.js" />
+    <Content Include="bin\node_modules\graceful-fs\graceful-fs.js" />
+    <Content Include="bin\node_modules\graceful-fs\legacy-streams.js" />
+    <Content Include="bin\node_modules\graceful-fs\polyfills.js" />
+    <Content Include="bin\node_modules\hosted-git-info\git-host-info.js" />
+    <Content Include="bin\node_modules\hosted-git-info\git-host.js" />
+    <Content Include="bin\node_modules\hosted-git-info\index.js" />
+    <Content Include="bin\node_modules\http-errors\index.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\dbcs-codec.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\dbcs-data.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\index.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\internal.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\sbcs-codec.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\sbcs-data-generated.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\sbcs-data.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\utf16.js" />
+    <Content Include="bin\node_modules\iconv-lite\encodings\utf7.js" />
+    <Content Include="bin\node_modules\iconv-lite\lib\bom-handling.js" />
+    <Content Include="bin\node_modules\iconv-lite\lib\extend-node.js" />
+    <Content Include="bin\node_modules\iconv-lite\lib\index.js" />
+    <Content Include="bin\node_modules\iconv-lite\lib\streams.js" />
+    <Content Include="bin\node_modules\inherits\inherits.js" />
+    <Content Include="bin\node_modules\inherits\inherits_browser.js" />
+    <Content Include="bin\node_modules\inherits\test.js" />
+    <Content Include="bin\node_modules\invert-kv\index.js" />
+    <Content Include="bin\node_modules\is-arrayish\index.js" />
+    <Content Include="bin\node_modules\is-builtin-module\index.js" />
+    <Content Include="bin\node_modules\is-fullwidth-code-point\index.js" />
+    <Content Include="bin\node_modules\is-utf8\is-utf8.js" />
+    <Content Include="bin\node_modules\lcid\index.js" />
+    <Content Include="bin\node_modules\load-json-file\index.js" />
+    <Content Include="bin\node_modules\lodash.assign\index.js" />
+    <Content Include="bin\node_modules\media-typer\index.js" />
+    <Content Include="bin\node_modules\mime-db\index.js" />
+    <Content Include="bin\node_modules\mime-types\index.js" />
+    <Content Include="bin\node_modules\ms\index.js" />
+    <Content Include="bin\node_modules\normalize-package-data\lib\extract_description.js" />
+    <Content Include="bin\node_modules\normalize-package-data\lib\fixer.js" />
+    <Content Include="bin\node_modules\normalize-package-data\lib\make_warning.js" />
+    <Content Include="bin\node_modules\normalize-package-data\lib\normalize.js" />
+    <Content Include="bin\node_modules\normalize-package-data\lib\safe_format.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\basic.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\consistency.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\dependencies.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\github-urls.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\mixedcase-names.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\normalize.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\scoped.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\scripts.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\strict.js" />
+    <Content Include="bin\node_modules\normalize-package-data\test\typo.js" />
+    <Content Include="bin\node_modules\number-is-nan\index.js" />
+    <Content Include="bin\node_modules\on-finished\index.js" />
+    <Content Include="bin\node_modules\os-locale\index.js" />
+    <Content Include="bin\node_modules\parse-json\index.js" />
+    <Content Include="bin\node_modules\parse-json\vendor\parse.js" />
+    <Content Include="bin\node_modules\parse-json\vendor\unicode.js" />
+    <Content Include="bin\node_modules\path-exists\index.js" />
+    <Content Include="bin\node_modules\path-type\index.js" />
+    <Content Include="bin\node_modules\pify\index.js" />
+    <Content Include="bin\node_modules\pinkie-promise\index.js" />
+    <Content Include="bin\node_modules\pinkie\index.js" />
+    <Content Include="bin\node_modules\qs\dist\qs.js" />
+    <Content Include="bin\node_modules\qs\lib\index.js" />
+    <Content Include="bin\node_modules\qs\lib\parse.js" />
+    <Content Include="bin\node_modules\qs\lib\stringify.js" />
+    <Content Include="bin\node_modules\qs\lib\utils.js" />
+    <Content Include="bin\node_modules\qs\test\index.js" />
+    <Content Include="bin\node_modules\qs\test\parse.js" />
+    <Content Include="bin\node_modules\qs\test\stringify.js" />
+    <Content Include="bin\node_modules\qs\test\utils.js" />
+    <Content Include="bin\node_modules\raw-body\index.js" />
+    <Content Include="bin\node_modules\read-pkg-up\index.js" />
+    <Content Include="bin\node_modules\read-pkg\index.js" />
+    <Content Include="bin\node_modules\require-directory\index.js" />
+    <Content Include="bin\node_modules\require-main-filename\index.js" />
+    <Content Include="bin\node_modules\require-main-filename\LICENSE.txt" />
+    <Content Include="bin\node_modules\require-main-filename\test.js" />
+    <Content Include="bin\node_modules\semver\semver.js" />
+    <Content Include="bin\node_modules\set-blocking\index.js" />
+    <Content Include="bin\node_modules\set-blocking\LICENSE.txt" />
+    <Content Include="bin\node_modules\setprototypeof\index.js" />
+    <Content Include="bin\node_modules\spdx-correct\index.js" />
+    <Content Include="bin\node_modules\spdx-expression-parse\index.js" />
+    <Content Include="bin\node_modules\spdx-expression-parse\parser.js" />
+    <Content Include="bin\node_modules\statuses\index.js" />
+    <Content Include="bin\node_modules\string-width\index.js" />
+    <Content Include="bin\node_modules\strip-ansi\index.js" />
+    <Content Include="bin\node_modules\strip-bom\index.js" />
+    <Content Include="bin\node_modules\type-is\index.js" />
+    <Content Include="bin\node_modules\unpipe\index.js" />
+    <Content Include="bin\node_modules\validate-npm-package-license\index.js" />
+    <Content Include="bin\node_modules\vary\index.js" />
+    <Content Include="bin\node_modules\which-module\index.js" />
+    <Content Include="bin\node_modules\window-size\cli.js" />
+    <Content Include="bin\node_modules\window-size\index.js" />
+    <Content Include="bin\node_modules\wrap-ansi\index.js" />
+    <Content Include="bin\node_modules\y18n\index.js" />
+    <Content Include="bin\node_modules\yargs-parser\index.js" />
+    <Content Include="bin\node_modules\yargs-parser\lib\tokenize-arg-string.js" />
+    <Content Include="bin\node_modules\yargs-parser\LICENSE.txt" />
+    <Content Include="bin\node_modules\yargs\index.js" />
+    <Content Include="bin\node_modules\yargs\lib\command.js" />
+    <Content Include="bin\node_modules\yargs\lib\completion.js" />
+    <Content Include="bin\node_modules\yargs\lib\levenshtein.js" />
+    <Content Include="bin\node_modules\yargs\lib\obj-filter.js" />
+    <Content Include="bin\node_modules\yargs\lib\usage.js" />
+    <Content Include="bin\node_modules\yargs\lib\validation.js" />
+    <Content Include="bin\node_modules\yargs\yargs.js" />
+    <Content Include="obj\Debug\RemoveHashTag.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\RemoveHashTag.dll" />
+    <Content Include="obj\Debug\RemoveHashTag.pdb" />
+    <Content Include="scripts\ai.0.22.19-build00125.js" />
+    <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="server.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2622</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2622/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

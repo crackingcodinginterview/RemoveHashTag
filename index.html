@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="test">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <base href="/" />
+</head>
+<body>
+    <img src="img/aa.PNG" alt="Alternate Text" />
+    <div data-ui-view></div>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script>
+        (function () {
+            var app = angular.module('test', ['ui.router']);
+            app.config(function ($stateProvider, $urlRouterProvider) {
+                $urlRouterProvider.otherwise('/vominhquoc');
+                $stateProvider.state('home', {
+                    url: '/vominhquoc',
+                    template: 'HELLO'
+                })
+                .state('other', {
+                    url: '/other',
+                    template: 'TEST'
+                });
+            });
+            app.config(function ($locationProvider) {
+                $locationProvider.html5Mode(true);
+            });
+        }())
+    </script>
+</body>
+</html>
